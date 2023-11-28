@@ -1,11 +1,10 @@
-export function getTokenFromLocalStorage():void {
+export function getTokenFromLocalStorage(): string | null {
   const data = localStorage.getItem('token')
   const token = data ? JSON.parse(data) : ''
-
-  return token
+  return token;
 }
 export function setTokenToLocalStorage(key: string, token:string):void {
-  localStorage.setItem(key, JSON.stringify(token))
+  localStorage.setItem(key, JSON.stringify(token));
 }
 export function removeTokenFromLocalStorage(key: string): void {
   localStorage.removeItem(key);

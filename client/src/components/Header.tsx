@@ -2,11 +2,24 @@ import { FC } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { AiOutlineBank } from 'react-icons/ai';
 import { FaSignOutAlt } from "react-icons/fa";
+import { useAuth } from '../hooks/useAuth';
+import { useDispatch } from 'react-redux';
+import { logout } from '../store/user/userSlice';
+import { removeTokenFromLocalStorage } from '../helpers/localstorage.helper';
+import { toast } from 'react-toastify';
 
 export const Header: FC = () => {
-  const isAuth = false
+  const isAuth = useAuth()
+  const dispatch = useDispatch()
+
+  const logoutHandler = () => {
+    dispatch(logout())
+    removeTokenFromLocalStorage('token')
+    toast.success('You logged out')
+  }
+
   return (
-    <header className="flex items-center justify-between bg-slate-800 px-4 py-2 shadow-sm backdrop-blur-sm">
+    <header className="flex items-center justify-between bg-slate-800 px-4 py-3 shadow-sm backdrop-blur-sm">
       <Link to="/">
         <AiOutlineBank size={25} />
       </Link>
@@ -25,7 +38,7 @@ export const Header: FC = () => {
         </ul>
       )}
       {isAuth ? (
-        <button className="btn btn-red">
+        <button className="btn btn-red" onClick={logoutHandler}>
           <span>Log Out</span>
           <FaSignOutAlt />
         </button>

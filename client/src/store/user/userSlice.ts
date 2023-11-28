@@ -13,7 +13,7 @@ const initialState: UserState = {
   isAuth: false
 };
 
-export const counterSlice = createSlice({
+export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
@@ -23,14 +23,13 @@ export const counterSlice = createSlice({
     },
     logout: (state) => {
       state.isAuth = false;
-      state.user = null;    
+      state.user = null;
     },
   },
 });
 
-export const { login, logout} = counterSlice.actions;
+export const {login, logout} = userSlice.actions;
 
-// Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.counter.value;
+export const selectCount = (state: RootState) => state.user;
 
-export default counterSlice.reducer;
+export default userSlice.reducer;
