@@ -6,5 +6,5 @@ export const AuthService = {
     return data
   },
   async login() {},
-  async hetMe() {},
+  async getMe() {},
 };

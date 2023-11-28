@@ -1,16 +1,46 @@
 import { FC, useState } from 'react'
+import { AuthService } from '../services/auth.service'
+import { toast } from 'react-toastify'
 
 export const Auth: FC = () => {
-  const [isLogIn, setIsLogIn] = useState<boolean>(false)
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [isLogIn, setIsLogIn] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  //e: React.FormEvent<HTMLFormElement>
+  const loginHandler = async () => {
+    try {
+    } catch (err: any) {
+      const error = err.response?.data.message;
+      toast.error(error.toString());
+    }
+  };
 
+  const registrationHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      const data = await AuthService.registration({
+        email,
+        password,
+      });
+      console.log(data)
+      if (data) {
+        toast.success('Account has been created');
+        setIsLogIn(!isLogIn);
+      }
+    } catch (err: any) {
+      const error = err.response?.data.message;
+      toast.error(error.toString());
+    }
+  };
   return (
     <div className="mt-40 flex flex-col justify-center items-center bg-slate-900 text-white">
       <h1 className="text-center text-xl mb-10">
         {isLogIn ? 'Sign In' : 'Sign up'}
       </h1>
-      <form className="flex w-1/3 flex-col mx-auto gap-5">
+      <form
+        className="flex w-1/3 flex-col mx-auto gap-5"
+        onSubmit={isLogIn ? loginHandler : registrationHandler}
+      >
         <input
           type="text"
           className="input"
