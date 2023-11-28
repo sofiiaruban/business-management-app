@@ -25,7 +25,7 @@ export const Header: FC = () => {
         </ul>
       )}
       {isAuth ? (
-        <button className="bg-red-500 py-2 px-4 rounded flex align-middle">
+        <button className="btn btn-red">
           <span>Log Out</span>
           <FaSignOutAlt />
         </button>
