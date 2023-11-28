@@ -31,7 +31,7 @@ export const Header: FC = () => {
         </button>
       ) : (
         <Link className="py-2 text-white/50 hover: text-white" to={'auth'}>
-          Log In/Sign In
+          Log In/Sign Un
         </Link>
       )}
     </header>
