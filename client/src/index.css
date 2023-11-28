@@ -22,7 +22,7 @@
     @apply bg-transparent p-2 border bg-slate-700 rounded-md outline-none focus:bg-slate-300;
   }
   .container {
-    @apply max-w-[1000px];
+    @apply max-w-[1000px] mx-auto;
   }
 }
 
@@ -31,6 +31,6 @@
     @apply bg-rose-900 hover:bg-rose-800
   }
   .btn-green {
-    @apply bg-green hover:bg-green-800
+    @apply bg-green-700 hover:bg-green-800
   }
 }

@@ -4,7 +4,7 @@ import { AiOutlineBank } from 'react-icons/ai';
 import { FaSignOutAlt } from "react-icons/fa";
 
 export const Header: FC = () => {
-  const isAuth = true
+  const isAuth = false
   return (
     <header className="flex items-center justify-between bg-slate-800 px-4 py-2 shadow-sm backdrop-blur-sm">
       <Link to="/">
