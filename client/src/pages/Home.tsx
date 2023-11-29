@@ -1,20 +1,34 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { AiFillCloseCircle, AiFillEdit } from 'react-icons/ai';
 import { Form } from 'react-router-dom';
 import { FaPlus} from 'react-icons/fa';
 import { CompanyModal } from '../components/CompanyModal';
+import { instance } from '../api/axios.api';
 
-export const companyAction = async ({ request}) {
-  switch(request.method){
+export const companyAction = async ({ request}: any) => {
+  switch (request.method) {
     case "POST": {
       const formData = await request.formData()
-      const company  = 
+      const company = {
+        name: formData.get('name'),
+        foundedAt: Number(formData.get('foundedAt')),
+        service: formData.get('service'),
+        headquarter: formData.get('headquarter'),
+      };
+      console.log(company)
+      await instance.post('/companies', company)
+      return null
     }
-    case "PATCH": {}
-    case "DELETE": {}
+    case "PATCH": {
+      return null
+    }
+    case "DELETE": { 
+      return null
+    }
   }
 }
 export const Home: FC = () => {
+  const [visibleModal, setVisibleModal] = useState<boolean>(false);
   return (
     <div className="mt-10 rounded-md bg-slate-800 p-4">
       <h1>Your Companies List</h1>
@@ -34,13 +48,16 @@ export const Home: FC = () => {
           </div>
         </div>
       </div>
-      <button className="max-w-fit flex items-center gap-2 text-white/50 hover: text-white">
+      <button
+        onClick={() => setVisibleModal(true)}
+        className="max-w-fit flex items-center gap-2 text-white/50 hover: text-white"
+      >
         <FaPlus />
         <span>Create a new company</span>
       </button>
-    <CompanyModal type={'post'} id={0} setVisibleModal={function (visible: boolean): void {
-        throw new Error('Function not implemented.');
-      } }/>
+      {visibleModal && (
+        <CompanyModal type={'post'} setVisibleModal={setVisibleModal} />
+      )}
     </div>
   );
 }

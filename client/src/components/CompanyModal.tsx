@@ -3,34 +3,43 @@ import { Form } from "react-router-dom";
 
 interface ICompanyModal {
   type: 'post' | 'patch';
-  id: number;
+  id?: number;
   setVisibleModal: (visible: boolean) => void
 }
 export const CompanyModal: FC<ICompanyModal> = ({type, id, setVisibleModal}) => {
   return (
     <div className="fixed top-0 left-0 bottom-0 right-0 w-screen h-full bg-black/50 flex justify-center items-center">
-      <Form className="grid gap-2 w-[300px] p-5 rounded-b-md bg-slate-900">
+      <Form
+        action="/companies"
+        method={type}
+        className="grid gap-2 w-[300px] p-5 rounded-b-md bg-slate-900"
+      >
         <label htmlFor="name">
           <small>Company title</small>
           <input className="input w-full" type="text" name="name" />
         </label>
-        <label htmlFor="name">
-          <small>Company title</small>
-          <input className="input w-full" type="text" name="name" />
+        <label htmlFor="service">
+          <small>Service of activity</small>
+          <input className="input w-full" type="text" name="service" />
         </label>
-        <label htmlFor="name">
-          <small>Company title</small>
-          <input className="input w-full" type="text" name="name" />
+        <label htmlFor="headquarter">
+          <small>Address</small>
+          <input className="input w-full" type="text" name="headquarter" />
         </label>
-        <label htmlFor="name">
-          <small>Company title</small>
-          <input className="input w-full" type="text" name="name" />
+        <label htmlFor="foundedAt">
+          <small>Number of employees</small>
+          <input className="input w-full" type="text" name="foundedAt" />
         </label>
         <div className="flex items-center gap-2">
           <button className="btn btn-green" type="submit">
             {type === 'patch' ? 'Save' : 'Create'}
           </button>
-          <button className="btn btn-red">Close</button>
+          <button
+            onClick={() => setVisibleModal(false)}
+            className="btn btn-red"
+          >
+            Close
+          </button>
         </div>
       </Form>
     </div>
