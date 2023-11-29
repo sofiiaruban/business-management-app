@@ -4,22 +4,34 @@ import { ErrorPage } from "../pages/ErrorPage";
 import { Home } from "../pages/Home";
 import { Company } from "../pages/Company";
 import { Auth } from "../pages/Auth";
+import { ProtectedRoute } from "../components/ProtectedRoute";
 
-export const router = createBrowserRouter([{
-  path: '/',
-  element: <Layout/>,
-  errorElement: <ErrorPage/>,
-  children: [{
-    index: true,
-    element: <Home/>
-  },
+export const router = createBrowserRouter([
   {
-    path: "company/:id",
-    element: <Company/>
+    path: '/',
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'company/:id',
+        element: (
+          <ProtectedRoute>
+            <Company />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'auth',
+        element: <Auth />,
+      },
+    ],
   },
-  {
-    path: "auth",
-    element: <Auth/>
-  }
-]
-}])
+]);
