@@ -5,6 +5,7 @@ import { FaPlus} from 'react-icons/fa';
 import { CompanyModal } from '../components/CompanyModal';
 import { instance } from '../api/axios.api';
 import { ICompany } from '../types/types';
+import { CgDetailsMore } from 'react-icons/cg';
 
 export const companyAction = async ({request}: any) => {
   switch (request.method) {
@@ -48,53 +49,53 @@ export const Home: FC = () => {
   const companies = useLoaderData() as ICompany[];
   const [companyId, setCompanyId] = useState<number>(0);
   const [isEdit, setIsEdit] = useState<boolean>(false);
-
-  console.log(companies);
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
+  
   return (
-    <div className="mt-10 rounded-md bg-slate-800 p-4">
-      <h1>Your Companies List</h1>
-      <div className="mt-2 flex-col items-center">
-        <table className="w-full">
+    <div className="mt-10 rounded-md bg-slate-800 p-4 w-1/2 mx-auto">
+      <h1 className="text-xl font-semibold">Your Companies List</h1>
+      <div className="mt-2 flex-col mb-2">
+        <table className="w-full table-auto">
           <thead>
-            <tr className="flex items-center py-2 px-4 gap-4">
-              <th>Id</th>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Service</th>
-              <th>Number of employees</th>
+            <tr className="flex items-center py-2 px-4 justify-between">
+              <th className="font-bold">Id</th>
+              <th className="font-bold">Name</th>
+              <th className="font-bold">Service</th>
+              <th className="font-bold">Actions</th>
             </tr>
           </thead>
           <tbody>
             {companies.map((company: ICompany, index: number) => (
-              
-                <tr
-                  key={index}
-                  className="group relative flex py-2 items-center px-4 rounded-lg bg-blue-600 gap-3 mb-2"
-                >
-                  <Link to={`/companies/${company.id}`}>
-                  <td>{company.id}</td>
-                  <td>{company.name}</td>
-                  <td>{company.service}</td>
-                  <td className="absolute hidden px-3 left-0 top-0 bottom-0 right-0 rounded-lg items-center bg-black/90 justify-end gap-3 group-hover:flex">
-                    <button
-                      onClick={() => {
-                        setCompanyId(company.id);
-                        setVisibleModal(true);
-                        setIsEdit(true);
-                      }}
-                    >
-                      <AiFillEdit />
+              <tr
+                key={index}
+                className="flex items-center py-2 px-3 rounded-lg bg-blue-600 gap-3 mb-2 justify-between"
+              >
+                <td>{company.id}</td>
+                <td>{company.name}</td>
+                <td>{company.service}</td>
+                <td className="flex justify-end gap-2">
+                  <Link to={`/companies/${company.id}`} className="text-white">
+                    <button>
+                      <CgDetailsMore />
                     </button>
-                    <Form className="flex" method="delete" action="/companies">
-                      <input type="hidden" value={company.id} name="id" />
-                      <button type="submit">
-                        <AiFillCloseCircle />
-                      </button>
-                    </Form>
-                  </td>
                   </Link>
-                </tr>
+                  <button
+                    onClick={() => {
+                      setCompanyId(company.id);
+                      setVisibleModal(true);
+                      setIsEdit(true);
+                    }}
+                  >
+                    <AiFillEdit />
+                  </button>
+                  <Form className="flex" method="delete" action="/companies">
+                    <input type="hidden" value={company.id} name="id" />
+                    <button type="submit">
+                      <AiFillCloseCircle />
+                    </button>
+                  </Form>
+                </td>
+              </tr>
             ))}
           </tbody>
         </table>
