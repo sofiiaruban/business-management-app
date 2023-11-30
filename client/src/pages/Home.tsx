@@ -17,9 +17,8 @@ export const companyAction = async ({request}: any) => {
         service: formData.get('service'),
         address: formData.get('address'),
         description: formData.get('description'),
-        type: formData.get('type'),
+        companyType: formData.get('companyType'),
       };
-      console.log(company)
       await instance.post('/companies', company)
       return null
     }

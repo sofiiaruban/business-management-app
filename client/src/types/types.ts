@@ -6,6 +6,12 @@ export interface IUser {
 export interface IUserData {
   email: string;
   password: string;
+  phoneNumber?: string; 
+  lastName?: string;
+  firstName?: string;
+  nickname?: string;
+  description?: string;
+  position?: string;
 }
 export interface IResponseUser {
   email: string;
@@ -25,7 +31,7 @@ export interface ICompany {
   service: string;
   address: string;
   description: string;
-  type: string;
+  companyType: string;
   createdAt: string;
   updatedAt: string;
 }

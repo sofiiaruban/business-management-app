@@ -66,17 +66,16 @@ export const CompanyModal: FC<ICompanyModal> = ({type, id, setVisibleModal}) => 
             required
           />
         </label>
-        <label htmlFor="type">
+        <label htmlFor="companyType">
           <small>Type</small>
           <input
             className="input w-full"
             type="text"
-            name="type"
+            name="companyType"
             placeholder="Type"
             required
           />
         </label>
-
         <div className="flex items-center gap-2">
           <button className="btn btn-green" type="submit">
             {type === 'patch' ? 'Save' : 'Create'}
