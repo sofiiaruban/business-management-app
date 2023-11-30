@@ -18,3 +18,12 @@ export interface IResponseUserData {
   token: string;
   user: IResponseUser;
 }
+export interface ICompany {
+  id: number;
+  name: string;
+  foundedAt: number;
+  service: string;
+  headquarter: string;
+  createdAt: string;
+  updatedAt: string;
+}
