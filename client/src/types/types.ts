@@ -21,9 +21,11 @@ export interface IResponseUserData {
 export interface ICompany {
   id: number;
   name: string;
-  foundedAt: number;
+  employeeNumber: number;
   service: string;
-  headquarter: string;
+  address: string;
+  description: string;
+  type: string;
   createdAt: string;
   updatedAt: string;
 }

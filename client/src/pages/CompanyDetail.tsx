@@ -24,7 +24,7 @@ export const CompanyDetail: FC = () => {
             </tr>
             <tr className="p-2 rounded-lg bg-blue-600 mb-2 hover:bg-blue-400">
               <td className="font-semibold">Address:</td>
-              <td>{company.headquarter}</td>
+              <td>{company.address}</td>
             </tr>
             <tr className="p-2 rounded-lg bg-blue-600 mb-2 hover:bg-blue-400">
               <td className="font-semibold">Service of activity:</td>
@@ -32,7 +32,7 @@ export const CompanyDetail: FC = () => {
             </tr>
             <tr className="py-2 px-3 rounded-lg bg-blue-600 mb-2 hover:bg-blue-400">
               <td className="font-semibold">Number of employees:</td>
-              <td>{company.foundedAt}</td>
+              <td>{company.employeeNumber}</td>
             </tr>
           </table>
         </div>

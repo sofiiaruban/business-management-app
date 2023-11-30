@@ -36,26 +36,47 @@ export const CompanyModal: FC<ICompanyModal> = ({type, id, setVisibleModal}) => 
             required
           />
         </label>
-        <label htmlFor="headquarter">
+        <label htmlFor="address">
           <small>Address</small>
           <input
             className="input w-full"
             type="text"
-            name="headquarter"
+            name="address"
             placeholder="Address"
             required
           />
         </label>
-        <label htmlFor="foundedAt">
+        <label htmlFor="employeeNumber">
           <small>Number of employees</small>
           <input
             className="input w-full"
             type="text"
-            name="foundedAt"
+            name="employeeNumber"
             placeholder="Number of employees"
             required
           />
         </label>
+        <label htmlFor="description">
+          <small>Description</small>
+          <input
+            className="input w-full"
+            type="text"
+            name="description"
+            placeholder="Description"
+            required
+          />
+        </label>
+        <label htmlFor="type">
+          <small>Type</small>
+          <input
+            className="input w-full"
+            type="text"
+            name="type"
+            placeholder="Type"
+            required
+          />
+        </label>
+
         <div className="flex items-center gap-2">
           <button className="btn btn-green" type="submit">
             {type === 'patch' ? 'Save' : 'Create'}

@@ -13,9 +13,11 @@ export const companyAction = async ({request}: any) => {
       const formData = await request.formData()
       const company = {
         name: formData.get('name'),
-        foundedAt: Number(formData.get('foundedAt')),
+        employeeNumber: Number(formData.get('employeeNumber')),
         service: formData.get('service'),
-        headquarter: formData.get('headquarter'),
+        address: formData.get('address'),
+        description: formData.get('description'),
+        type: formData.get('type'),
       };
       console.log(company)
       await instance.post('/companies', company)
@@ -26,9 +28,11 @@ export const companyAction = async ({request}: any) => {
       const company = {
         id: formData.get('id'),
         name: formData.get('name'),
-        foundedAt: Number(formData.get('foundedAt')),
+        employeeNumber: Number(formData.get('employeeNumber')),
         service: formData.get('service'),
-        headquarter: formData.get('headquarter'),
+        address: formData.get('address'),
+        description: formData.get('description'),
+        type: formData.get('type'),
       };
       await instance.patch(`/companies/${company.id}`, company)
       return null
