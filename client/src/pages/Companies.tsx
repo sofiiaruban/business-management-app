@@ -111,7 +111,11 @@ export const Companies: FC = () => {
         <span>Create a new company</span>
       </button>
       {visibleModal && (
-        <CompanyModal type={'post'} setVisibleModal={setVisibleModal} />
+        <CompanyModal
+          type={'post'}
+          id={undefined}
+          setVisibleModal={setVisibleModal}
+        />
       )}
       {visibleModal && isEdit && (
         <CompanyModal
