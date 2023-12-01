@@ -52,16 +52,21 @@ React, Redux, Nest,  PostgreSQL, TypeORM
 # Getting Started
 
 ### Clone the repository
-git clone
+git clone https://github.com/sofiiaruban/business-management-app.git
 
-## Navigate to the project folder
-cd task-manager-app
-
+## Navigate to the project folder 
+cd business-management-app
+## Navigate to the client folder 
+cd client
 ## Install dependencies
 npm install
-
 ## Run the app
 npm run dev
-
+## Navigate to the server folder 
+cd server
+## Install dependencies
+npm install
+## Run the app
+npm run start
 
 
