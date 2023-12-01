@@ -5,7 +5,6 @@ interface ProfileInputsProps {
   changeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-
 export const ProfileInputs: FC<ProfileInputsProps> = ({ authData, changeHandler }) => {
   return (
     <>

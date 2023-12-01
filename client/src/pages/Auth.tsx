@@ -66,11 +66,26 @@ export const Auth: FC = () => {
       toast.error(error.toString());
     }
   };
+
+  const toggleLoginHandler = () => {
+    setIsLogIn(!isLogIn)
+  }
   return (
     <div className="mt-10 flex flex-col justify-center items-center bg-slate-900 text-white">
-      <h1 className="text-center text-xl mb-10">
-        {isLogIn ? 'Sign In' : 'Sign up'}
-      </h1>
+      <div className="flex mb-4 gap-2">
+        <button
+          className={`${!isLogIn ? 'font-bold' : ''} "btn btn-grey"`}
+          onClick={toggleLoginHandler}
+        >
+          Sign Up
+        </button>
+        <button
+          className={`${isLogIn ? 'font-bold' : ''} "btn btn-grey"`}
+          onClick={toggleLoginHandler}
+        >
+          Sign In
+        </button>
+      </div>
       <form
         className="flex w-1/3 flex-col mx-auto gap-5"
         onSubmit={isLogIn ? loginHandler : registrationHandler}
