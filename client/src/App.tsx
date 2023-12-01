@@ -1,17 +1,17 @@
-import { RouterProvider } from "react-router-dom"
-import { router } from "./router/router"
-import { useAppDispatch } from "./store/hooks"
-import { getTokenFromLocalStorage } from "./helpers/localstorage.helper";
-import { toast } from "react-toastify";
-import { AuthService } from "./services/auth.service";
-import { login, logout } from "./store/user/userSlice";
-import { useEffect } from "react";
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router/router'
+import { useAppDispatch } from './store/hooks'
+import { getTokenFromLocalStorage } from './helpers/localstorage.helper'
+import { toast } from 'react-toastify'
+import { AuthService } from './services/auth.service'
+import { login, logout } from './store/user/userSlice'
+import { useEffect } from 'react'
 
-function App() {
-  const dispatch = useAppDispatch();
+export const App = () => {
+  const dispatch = useAppDispatch()
 
   const checkAuth = async () => {
-    const token = getTokenFromLocalStorage();
+    const token = getTokenFromLocalStorage()
     try {
       if (token) {
         const data = await AuthService.getProfile()
@@ -22,8 +22,8 @@ function App() {
         }
       }
     } catch (err: any) {
-      const error = err.response?.data.message;
-      toast.error(error.toString());
+      const error = err.response?.data.message
+      toast.error(error.toString())
     }
   }
 
@@ -35,4 +35,4 @@ function App() {
   )
 }
 
-export default App
+

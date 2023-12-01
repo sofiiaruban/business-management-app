@@ -1,13 +1,13 @@
 import { FC } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { AiOutlineBank } from 'react-icons/ai';
-import { FaSignOutAlt } from "react-icons/fa";
-import { useAuth } from '../hooks/useAuth';
-import { useDispatch } from 'react-redux';
-import { logout, selectUserId } from '../store/user/userSlice';
-import { removeTokenFromLocalStorage } from '../helpers/localstorage.helper';
-import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
+import { AiOutlineBank } from 'react-icons/ai'
+import { FaSignOutAlt } from 'react-icons/fa'
+import { useAuth } from '../hooks/useAuth'
+import { useDispatch } from 'react-redux'
+import { logout, selectUserId } from '../store/user/userSlice'
+import { removeTokenFromLocalStorage } from '../helpers/localstorage.helper'
+import { toast } from 'react-toastify'
+import { useSelector } from 'react-redux'
 
 export const Header: FC = () => {
   const isAuth = useAuth()
@@ -21,12 +21,12 @@ export const Header: FC = () => {
   }
 
   return (
-    <header className="flex items-center text-xl justify-between bg-slate-800 px-6 py-3 shadow-sm backdrop-blur-sm">
-      <Link to="/companies">
+    <header className='flex items-center text-xl justify-between bg-slate-800 px-6 py-3 shadow-sm backdrop-blur-sm'>
+      <Link to='/companies'>
         <AiOutlineBank size={25} />
       </Link>
       {isAuth && (
-        <ul className="flex items-center gap-5 ml-auto mr-10">
+        <ul className='flex items-center gap-5 ml-auto mr-10'>
           <li>
             <NavLink
               to={'/companies'}
@@ -50,12 +50,12 @@ export const Header: FC = () => {
         </ul>
       )}
       {isAuth ? (
-        <button className="btn btn-red" onClick={logoutHandler}>
+        <button className='btn btn-red' onClick={logoutHandler}>
           <span>Log Out</span>
           <FaSignOutAlt />
         </button>
       ) : (
-        <Link className="py-2 text-white/50 hover: text-white" to={'auth'}>
+        <Link className='py-2 text-white/50 hover: text-white' to={'auth'}>
           Auth
         </Link>
       )}
