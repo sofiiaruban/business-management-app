@@ -1,5 +1,7 @@
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 import { Form } from "react-router-dom";
+import { ICompany } from "../types/types";
+import { instance } from "../api/axios.api";
 
 interface ICompanyModal {
   type: 'post' | 'patch';
@@ -7,6 +9,28 @@ interface ICompanyModal {
   setVisibleModal: (visible: boolean) => void
 }
 export const CompanyModal: FC<ICompanyModal> = ({type, id, setVisibleModal}) => {
+  const [companyData, setCompanyData] = useState<ICompany>({
+    id: 0,
+    name: '',
+    service: '',
+    address: '',
+    employeeNumber: 0,
+    description: '',
+    companyType: ''
+  });
+
+  const getCompanyData = async () => {
+    const { data } = await instance.get<ICompany>(`/companies/${id}`);
+    setCompanyData(data)
+    return null;
+  }
+
+  useEffect(() => {
+    if (id) {
+      getCompanyData();
+    }
+  }, []);
+
   return (
     <div className="fixed top-0 left-0 bottom-0 right-0 w-screen h-full bg-black/50 flex justify-center items-center">
       <Form
@@ -21,8 +45,7 @@ export const CompanyModal: FC<ICompanyModal> = ({type, id, setVisibleModal}) => 
             className="input w-full"
             type="text"
             name="name"
-            placeholder="Company title"
-            required
+            placeholder={companyData.name || 'Company title'}
           />
           <input type="hidden" name="id" value={id} />
         </label>
@@ -32,8 +55,7 @@ export const CompanyModal: FC<ICompanyModal> = ({type, id, setVisibleModal}) => 
             className="input w-full"
             type="text"
             name="service"
-            placeholder="Service of activity"
-            required
+            placeholder={companyData.service || 'Service of activity'}
           />
         </label>
         <label htmlFor="address">
@@ -42,8 +64,7 @@ export const CompanyModal: FC<ICompanyModal> = ({type, id, setVisibleModal}) => 
             className="input w-full"
             type="text"
             name="address"
-            placeholder="Address"
-            required
+            placeholder={companyData.address || 'Address'}
           />
         </label>
         <label htmlFor="employeeNumber">
@@ -52,8 +73,7 @@ export const CompanyModal: FC<ICompanyModal> = ({type, id, setVisibleModal}) => 
             className="input w-full"
             type="text"
             name="employeeNumber"
-            placeholder="Number of employees"
-            required
+            placeholder={companyData.employeeNumber || 'Number of employees'}
           />
         </label>
         <label htmlFor="description">
@@ -62,8 +82,7 @@ export const CompanyModal: FC<ICompanyModal> = ({type, id, setVisibleModal}) => 
             className="input w-full"
             type="text"
             name="description"
-            placeholder="Description"
-            required
+            placeholder={companyData.description || 'Description'}
           />
         </label>
         <label htmlFor="companyType">
@@ -72,17 +91,16 @@ export const CompanyModal: FC<ICompanyModal> = ({type, id, setVisibleModal}) => 
             className="input w-full"
             type="text"
             name="companyType"
-            placeholder="Type"
-            required
+            placeholder={companyData.companyType || 'Type'}
           />
         </label>
-        <div className="flex items-center gap-2">
-          <button className="btn btn-green" type="submit">
+        <div className="flex gap-2 mt-2">
+          <button className="btn btn-green basis-2/4" type="submit">
             {type === 'patch' ? 'Save' : 'Create'}
           </button>
           <button
             onClick={() => setVisibleModal(false)}
-            className="btn btn-red"
+            className="btn btn-red basis-2/4"
           >
             Close
           </button>

@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../pages/Layout";
 import { ErrorPage } from "../pages/ErrorPage";
-import { Home, companyAction, companyLoader } from "../pages/Home";
+import { Companies, companyAction, companyLoader } from '../pages/Companies';
 import { CompanyDetail, companyDetailedLoader } from "../pages/CompanyDetail";
 import { Auth } from "../pages/Auth";
 import { ProtectedRoute } from "../components/ProtectedRoute";
+import { Profile, profileLoader } from "../pages/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -12,9 +13,13 @@ export const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
+      //{
+      //  index: true,
+      //  element: <Home />,
+      //},
       {
-        index: true,
-        element: <Home />,
+        path: 'auth',
+        element: <Auth />,
       },
       {
         path: 'companies',
@@ -22,7 +27,7 @@ export const router = createBrowserRouter([
         loader: companyLoader,
         element: (
           <ProtectedRoute>
-            <Home />
+            <Companies />
           </ProtectedRoute>
         ),
       },
@@ -36,8 +41,13 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'auth',
-        element: <Auth />,
+        path: 'user/:id',
+        loader: profileLoader,
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

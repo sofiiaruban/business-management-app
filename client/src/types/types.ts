@@ -4,9 +4,17 @@ export interface IUser {
   token: string;
 }
 export interface IUserData {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
   phoneNumber?: string; 
+  lastName?: string;
+  firstName?: string;
+  nickname?: string;
+  description?: string;
+  position?: string;
+}
+export interface IProfileData {
+  phoneNumber?: string;
   lastName?: string;
   firstName?: string;
   nickname?: string;
@@ -27,11 +35,11 @@ export interface IResponseUserData {
 export interface ICompany {
   id: number;
   name: string;
-  employeeNumber: number;
+  employeeNumber: number | any;
   service: string;
   address: string;
   description: string;
   companyType: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

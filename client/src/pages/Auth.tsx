@@ -32,7 +32,7 @@ export const Auth: FC = () => {
       [name]: value,
     }));
   };
-  console.log(authData)
+  
   const loginHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault()
@@ -44,7 +44,7 @@ export const Auth: FC = () => {
         setTokenToLocalStorage('token', data.token)
         dispatch(login(data))
         toast.success("You logged in")
-        navigate('/')
+        navigate('/companies');
       }
     } catch (err: any) {
       const error = err.response?.data.message;
@@ -71,8 +71,8 @@ export const Auth: FC = () => {
     setIsLogIn(!isLogIn)
   }
   return (
-    <div className="mt-10 flex flex-col justify-center items-center bg-slate-900 text-white">
-      <div className="flex mb-4 gap-2">
+    <div className="mt-2 flex flex-col justify-center items-center bg-slate-900 text-white">
+      <div className="flex mb-2 gap-2">
         <button
           className={`${!isLogIn ? 'font-bold' : ''} "btn btn-grey"`}
           onClick={toggleLoginHandler}
@@ -87,18 +87,23 @@ export const Auth: FC = () => {
         </button>
       </div>
       <form
-        className="flex w-1/3 flex-col mx-auto gap-5"
+        className="flex w-1/3 flex-col mx-auto gap-1"
         onSubmit={isLogIn ? loginHandler : registrationHandler}
       >
-        <input
-          type="text"
-          className="input"
-          placeholder="Email"
-          name="email"
-          value={authData.email}
-          onChange={changeHandler}
-          required
-        />
+        <label htmlFor="email" className='flex flex-col'>
+          <small>Email</small>
+          <input
+            type="text"
+            className="input"
+            placeholder="Email"
+            name="email"
+            value={authData.email}
+            onChange={changeHandler}
+            required
+          />
+        </label>
+        <label htmlFor="email" className='flex flex-col'>
+          <small>Password</small>
         <input
           type="password"
           className="input"
@@ -108,10 +113,11 @@ export const Auth: FC = () => {
           onChange={changeHandler}
           required
         />
+        </label>
         {!isLogIn && (
           <ProfileInputs authData={authData} changeHandler={changeHandler} />
         )}
-        <button className="btn btn-green mx-auto">Submit</button>
+        <button className="btn mt-1btn-green mx-auto">Submit</button>
       </form>
     </div>
   );
