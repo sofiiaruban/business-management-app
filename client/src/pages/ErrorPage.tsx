@@ -8,7 +8,7 @@ export const ErrorPage: FC = () => {
       <TbError404 size={100} />
       <h1 className="text-2xl">Page not found </h1>
       <Link
-        to={'/'}
+        to={'/companies'}
         className="bg-sky-500 text-lg hover:bg-sky-600 rounded-md px-6 py-2 font-semibold"
       >
         Back

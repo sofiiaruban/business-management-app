@@ -32,7 +32,7 @@ export const Auth: FC = () => {
       [name]: value,
     }));
   };
-  
+
   const loginHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault()
@@ -56,7 +56,6 @@ export const Auth: FC = () => {
     try {
       e.preventDefault();
       const data = await AuthService.registration(authData);
-      console.log(data)
       if (data) {
         toast.success('Account has been created');
         setIsLogIn(!isLogIn);
@@ -117,7 +116,7 @@ export const Auth: FC = () => {
         {!isLogIn && (
           <ProfileInputs authData={authData} changeHandler={changeHandler} />
         )}
-        <button className="btn mt-1btn-green mx-auto">Submit</button>
+        <button className="btn mt-1 btn-green mx-auto">Submit</button>
       </form>
     </div>
   );

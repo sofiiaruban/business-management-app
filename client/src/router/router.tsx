@@ -13,10 +13,14 @@ export const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      //{
-      //  index: true,
-      //  element: <Home />,
-      //},
+      {
+        index: true,
+        element: (
+          <ProtectedRoute>
+            <Companies />
+          </ProtectedRoute>
+        ),
+      },
       {
         path: 'auth',
         element: <Auth />,

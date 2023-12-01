@@ -10,7 +10,6 @@ export const companyDetailedLoader = async ({ params }: { params: Params }) => {
 
 export const CompanyDetail: FC = () => {
   const company = useLoaderData() as ICompany;
-  console.log(company);
 
   return (
     <>
