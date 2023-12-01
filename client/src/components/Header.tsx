@@ -21,7 +21,7 @@ export const Header: FC = () => {
   }
 
   return (
-    <header className="flex items-center justify-between bg-slate-800 px-4 py-3 shadow-sm backdrop-blur-sm">
+    <header className="flex items-center text-xl justify-between bg-slate-800 px-6 py-3 shadow-sm backdrop-blur-sm">
       <Link to="/companies">
         <AiOutlineBank size={25} />
       </Link>
@@ -56,7 +56,7 @@ export const Header: FC = () => {
         </button>
       ) : (
         <Link className="py-2 text-white/50 hover: text-white" to={'auth'}>
-          Sign In/Sign Un
+          Auth
         </Link>
       )}
     </header>

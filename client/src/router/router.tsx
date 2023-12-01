@@ -15,16 +15,20 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <ProtectedRoute>
-            <Companies />
-          </ProtectedRoute>
-        ),
-      },
-      {
         path: 'auth',
         element: <Auth />,
+        //action: companyAction,
+        //loader: companyLoader,
+        //element: (
+        //  <ProtectedRoute>
+        //    <Companies />
+        //  </ProtectedRoute>
+        //),
       },
+      //{
+      //  path: 'auth',
+      //  element: <Auth />,
+      //},
       {
         path: 'companies',
         action: companyAction,

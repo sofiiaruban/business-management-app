@@ -60,7 +60,7 @@ export const Profile:FC = () => {
           <button type="submit" className="btn btn-green basis-2/4 ">
             Save
           </button>
-          <button className="btn btn-grey basis-2/4">
+          <button type="button" className="btn btn-grey basis-2/4">
             <Link to="/companies">Back</Link>
           </button>
         </div>

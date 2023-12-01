@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { ChangeEvent, FC, useEffect, useState } from "react"
 import { Form } from "react-router-dom";
 import { ICompany } from "../types/types";
 import { instance } from "../api/axios.api";
@@ -9,27 +9,34 @@ interface ICompanyModal {
   setVisibleModal: (visible: boolean) => void
 }
 export const CompanyModal: FC<ICompanyModal> = ({type, id, setVisibleModal}) => {
-  const [companyData, setCompanyData] = useState<ICompany>({
-    id: 0,
-    name: '',
-    service: '',
-    address: '',
-    employeeNumber: 0,
-    description: '',
-    companyType: ''
-  });
+const [companyData, setCompanyData] = useState<ICompany>({
+  id: 0,
+  name: '',
+  service: '',
+  address: '',
+  employeeNumber: 0,
+  description: '',
+  companyType: ''
+});
+ const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+   const value = e.target.value;
+   const name = e.target.name;
 
-  const getCompanyData = async () => {
-    const { data } = await instance.get<ICompany>(`/companies/${id}`);
-    setCompanyData(data)
-    return null;
+   setCompanyData((prevData) => ({
+     ...prevData,
+     [name]: value,
+   }));
+ };
+const getCompanyData = async () => {
+  const { data } = await instance.get<ICompany>(`/companies/${id}`);
+  setCompanyData(data)
+  return null;
+}
+useEffect(() => {
+  if (id) {
+    getCompanyData();
   }
-
-  useEffect(() => {
-    if (id) {
-      getCompanyData();
-    }
-  }, []);
+}, []);
 
   return (
     <div className="fixed top-0 left-0 bottom-0 right-0 w-screen h-full bg-black/50 flex justify-center items-center">
@@ -39,59 +46,71 @@ export const CompanyModal: FC<ICompanyModal> = ({type, id, setVisibleModal}) => 
         className="grid gap-2 w-[300px] p-5 rounded-b-md bg-slate-900"
         onSubmit={() => setVisibleModal(false)}
       >
-        <label htmlFor="name">
+        <label>
           <small>Company title</small>
           <input
             className="input w-full"
             type="text"
             name="name"
-            placeholder={companyData.name || 'Company title'}
+            placeholder="Company title"
+            value={companyData.name || ''}
+            onChange={changeHandler}
           />
           <input type="hidden" name="id" value={id} />
         </label>
-        <label htmlFor="service">
+        <label>
           <small>Service of activity</small>
           <input
             className="input w-full"
             type="text"
             name="service"
-            placeholder={companyData.service || 'Service of activity'}
+            placeholder="Service of activity"
+            value={companyData.service || ''}
+            onChange={changeHandler}
           />
         </label>
-        <label htmlFor="address">
+        <label>
           <small>Address</small>
           <input
             className="input w-full"
             type="text"
             name="address"
-            placeholder={companyData.address || 'Address'}
+            placeholder="Address"
+            value={companyData.address || ''}
+            onChange={changeHandler}
           />
         </label>
-        <label htmlFor="employeeNumber">
+        <label>
           <small>Number of employees</small>
           <input
             className="input w-full"
             type="text"
             name="employeeNumber"
-            placeholder={companyData.employeeNumber || 'Number of employees'}
+            placeholder="Number of employees"
+            value={companyData.employeeNumber || ''}
+            onChange={changeHandler}
           />
         </label>
-        <label htmlFor="description">
+        <label>
           <small>Description</small>
           <input
             className="input w-full"
             type="text"
             name="description"
-            placeholder={companyData.description || 'Description'}
+            placeholder="Description"
+            value={companyData.description || ''}
+            onChange={changeHandler}
           />
         </label>
-        <label htmlFor="companyType">
+        <label>
           <small>Type</small>
           <input
             className="input w-full"
             type="text"
             name="companyType"
-            placeholder={companyData.companyType || 'Type'}
+            placeholder="Type"
+            value={companyData.companyType || ''}
+            onChange={changeHandler}
           />
         </label>
         <div className="flex gap-2 mt-2">
