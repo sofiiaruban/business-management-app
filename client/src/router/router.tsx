@@ -14,6 +14,10 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: '/',
+        element: <ProtectedRoute children={undefined} />,
+      },
+      {
         index: true,
         path: 'auth',
         element: <Auth />,
